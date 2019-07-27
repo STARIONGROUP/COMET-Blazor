@@ -1,14 +1,14 @@
 ﻿<!--
     Copyright (c) 2019 RHEA System S.A.
-    
+
     Author: Sam Gerené
-    
+
     This file is part of CDP4-Web-Application
-    
+
     CDP4-Web-Application is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
     the Free Software Foundation, either version 3 of the License.
-    
+
     CDP4-Web-Application is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
@@ -18,23 +18,15 @@
     along with CDP4-Web-Application. If not, see<https://www.gnu.org/licenses/>.
  -->
 
-<CascadingAuthenticationState>
-    <Router AppAssembly="typeof(Program).Assembly">
-        <NotFoundContent>
-            Page not found
-        </NotFoundContent>
+@page "/signout"
+@inject IUriHelper uriHelper
+@inject IAuthenticationService authenticationService
 
-        <NotAuthorizedContent>
-            <div class="main">
-                <h2>You're signed out</h2>
-                <p>To continue, please sign in.</p>
-                <a class="btn btn-danger" href="user/signin">Sign in</a>
-            </div>
-        </NotAuthorizedContent>
 
-        <AuthorizingContent>
-            Please wait...
-        </AuthorizingContent>
-
-    </Router>
-</CascadingAuthenticationState>
+@code {
+    protected override async Task OnInitAsync()
+    {
+        await this.authenticationService.LogOut();
+        this.uriHelper.NavigateTo("/");
+    }
+}

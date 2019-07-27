@@ -24,6 +24,7 @@
 namespace CDP4WebApp
 {
     using CDP4WebApp.SessionManagement;
+    using Microsoft.AspNetCore.Components;
     using Microsoft.AspNetCore.Components.Builder;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -40,6 +41,10 @@ namespace CDP4WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<ISessionAnchor, SessionAnchor>();
+
+            services.AddAuthorizationCore();
+            services.AddSingleton<AuthenticationStateProvider, CDP4AuthenticationStateProvider>();
+            services.AddSingleton<IAuthenticationService, AuthenticationService>();
         }
 
         public void Configure(IComponentsApplicationBuilder app)
