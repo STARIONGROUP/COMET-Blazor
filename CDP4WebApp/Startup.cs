@@ -23,13 +23,23 @@
 
 namespace CDP4WebApp
 {
+    using CDP4WebApp.SessionManagement;
     using Microsoft.AspNetCore.Components.Builder;
     using Microsoft.Extensions.DependencyInjection;
 
+    /// <summary>
+    /// The purpose of the <see cref="Startup"/> is to configure the web application
+    /// and to setup dependency injection
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// Setup dependency injection
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<ISessionAnchor, SessionAnchor>();
         }
 
         public void Configure(IComponentsApplicationBuilder app)

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Program.cs" company="RHEA System S.A.">
+// <copyright file="SessionAnchorcs" company="RHEA System S.A.">
 //    
 //  Copyright (c) 2019 RHEA System S.A.
 //
@@ -21,33 +21,31 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace CDP4WebApp
+namespace CDP4WebApp.SessionManagement
 {
-    using Microsoft.AspNetCore.Blazor.Hosting;
+    using CDP4Dal;
 
-    /// <summary>
-    /// Main entry point of the application
-    /// </summary>
-    public class Program
+    public class SessionAnchor : ISessionAnchor
     {
         /// <summary>
-        /// Main entry point of the application
+        /// Gets or sets the <see cref="ISession"/>
         /// </summary>
-        /// <param name="args">
-        /// not used
-        /// </param>
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+        public ISession Session { get; set;}
 
         /// <summary>
-        /// Creates the hostbuilder for use with blazor
+        /// Gets a value determining whether the session is open or not
         /// </summary>
-        /// <param name="args"></param>
-        /// <returns></returns>
-        public static IWebAssemblyHostBuilder CreateHostBuilder(string[] args) =>
-            BlazorWebAssemblyHost.CreateDefaultBuilder()
-                .UseBlazorStartup<Startup>();
+        public bool IsOpen
+        { 
+            get { 
+                
+                if (this.Session == null || this.Session.Credentials == null)
+                { 
+                    return false;
+                }
+
+                return true; 
+            }
+         }
     }
 }
