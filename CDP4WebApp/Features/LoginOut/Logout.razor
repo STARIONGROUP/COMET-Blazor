@@ -1,5 +1,5 @@
 ﻿<!--
-    Copyright (c) 2019 RHEA System S.A.
+    Copyright (c) 2019-2020 RHEA System S.A.
 
     Author: Sam Gerené
 
@@ -19,14 +19,14 @@
  -->
 
 @page "/signout"
-@inject IUriHelper uriHelper
-@inject IAuthenticationService authenticationService
-
+@inject NavigationManager NavigationManager
+@inject IAuthenticationService AuthenticationService
 
 @code {
-    protected override async Task OnInitAsync()
+
+    protected override async Task OnInitializedAsync()
     {
-        await this.authenticationService.LogOut();
-        this.uriHelper.NavigateTo("/");
+        await this.AuthenticationService.LogOut();
+        this.NavigationManager.NavigateTo("/");
     }
 }

@@ -1,7 +1,7 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SessionAnchorcs" company="RHEA System S.A.">
+// <copyright file="ISessionAnchor" company="RHEA System S.A.">
 //    
-//  Copyright (c) 2019 RHEA System S.A.
+//  Copyright (c) 2019-2020 RHEA System S.A.
 //
 //  Author: Sam Gerené
 //

@@ -1,7 +1,7 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Program.cs" company="RHEA System S.A.">
 //    
-//  Copyright (c) 2019 RHEA System S.A.
+//  Copyright (c) 2019-2020 RHEA System S.A.
 //
 //  Author: Sam Gerené
 //
@@ -23,7 +23,19 @@
 
 namespace CDP4WebApp
 {
-    using Microsoft.AspNetCore.Blazor.Hosting;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+
+    using CDP4Dal;
+    using CDP4WebApp.SessionManagement;
+
+    using Microsoft.AspNetCore.Components.Authorization;
+    using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
+
+    using Radzen;
 
     /// <summary>
     /// Main entry point of the application
@@ -36,18 +48,27 @@ namespace CDP4WebApp
         /// <param name="args">
         /// not used
         /// </param>
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
-        }
+            var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
-        /// <summary>
-        /// Creates the hostbuilder for use with blazor
-        /// </summary>
-        /// <param name="args"></param>
-        /// <returns></returns>
-        public static IWebAssemblyHostBuilder CreateHostBuilder(string[] args) =>
-            BlazorWebAssemblyHost.CreateDefaultBuilder()
-                .UseBlazorStartup<Startup>();
+            builder.Services.AddScoped<DialogService>();
+            builder.Services.AddScoped<NotificationService>();
+
+            builder.Services.AddTransient(sp => new HttpClient());
+
+            builder.Services.AddSingleton<ISessionAnchor, SessionAnchor>();
+            builder.Services.AddSingleton<ISession, Session>();
+
+            builder.Services.AddOptions();
+            builder.Services.AddAuthorizationCore();
+            builder.Services.AddSingleton<AuthenticationStateProvider, CDP4AuthenticationStateProvider>();
+            builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>();
+
+            builder.RootComponents.Add<App>("app");
+
+            var host = builder.Build();
+            await host.RunAsync();
+        }
     }
 }

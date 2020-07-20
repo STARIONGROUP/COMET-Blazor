@@ -1,7 +1,7 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SessionAnchorcs" company="RHEA System S.A.">
+// <copyright file="SessionAnchor" company="RHEA System S.A.">
 //    
-//  Copyright (c) 2019 RHEA System S.A.
+//  Copyright (c) 2019-2020 RHEA System S.A.
 //
 //  Author: Sam Gerené
 //
@@ -25,6 +25,10 @@ namespace CDP4WebApp.SessionManagement
 {
     using CDP4Dal;
 
+    /// <summary>
+    /// The purpose of the <see cref="SessionAnchor"/> is to provide access to
+    /// an instance of <see cref="ISession"/>
+    /// </summary>
     public class SessionAnchor : ISessionAnchor
     {
         /// <summary>

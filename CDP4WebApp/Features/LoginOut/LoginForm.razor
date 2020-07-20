@@ -1,5 +1,5 @@
 ﻿<!--
-    Copyright (c) 2019 RHEA System S.A.
+    Copyright (c) 2019-2020 RHEA System S.A.
 
     Author: Sam Gerené
 
@@ -19,8 +19,8 @@
  -->
 
 @page  "/signin"
-@inject IUriHelper uriHelper
-@inject IAuthenticationService authenticationService
+@inject IAuthenticationService AuthenticationService
+@inject NavigationManager NavigationManager
 
 <p>Please login</p>
 <form>
@@ -50,11 +50,11 @@
     /// </returns>
     public async Task Login()
     {
-        var person = await this.authenticationService.Login(this.userName, this.password);
+        var person = await this.AuthenticationService.Login(this.userName, this.password);
 
         if (person != null)
-        { 
-            uriHelper.NavigateTo("/");
+        {
+            NavigationManager.NavigateTo("/");
         }
     }
 }

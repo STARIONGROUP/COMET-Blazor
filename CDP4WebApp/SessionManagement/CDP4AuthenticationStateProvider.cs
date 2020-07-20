@@ -1,7 +1,7 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="CDP4AuthenticationStateProvider.cs" company="RHEA System S.A.">
 //    
-//  Copyright (c) 2019 RHEA System S.A.
+//  Copyright (c) 2019-2020 RHEA System S.A.
 //
 //  Author: Sam Gerené
 //
@@ -26,10 +26,15 @@ namespace CDP4WebApp.SessionManagement
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
+
     using CDP4Common.SiteDirectoryData;
     using CDP4Dal;
-    using Microsoft.AspNetCore.Components;
 
+    using Microsoft.AspNetCore.Components.Authorization;
+
+    /// <summary>
+    /// Provides information about the authentication state of the current user.
+    /// </summary>
     public class CDP4AuthenticationStateProvider : AuthenticationStateProvider
     {
         /// <summary>

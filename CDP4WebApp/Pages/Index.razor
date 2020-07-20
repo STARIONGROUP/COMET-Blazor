@@ -1,5 +1,5 @@
 ﻿<!--
-    Copyright (c) 2019 RHEA System S.A.
+    Copyright (c) 2019-2020 RHEA System S.A.
 
     Author: Sam Gerené
 
@@ -19,6 +19,8 @@
  -->
 
 @page "/"
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 <AuthorizeView>
     <Authorizing>

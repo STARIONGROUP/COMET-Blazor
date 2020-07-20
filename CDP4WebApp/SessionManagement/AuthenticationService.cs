@@ -1,7 +1,7 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="AuthenticationService.cs" company="RHEA System S.A.">
 //    
-//  Copyright (c) 2019 RHEA System S.A.
+//  Copyright (c) 2019-2020 RHEA System S.A.
 //
 //  Author: Sam Gerené
 //
@@ -25,11 +25,17 @@ namespace CDP4WebApp.SessionManagement
 {
     using System;
     using System.Threading.Tasks;
+
     using CDP4Common.SiteDirectoryData;
     using CDP4Dal;
     using CDP4ServicesDal;
-    using Microsoft.AspNetCore.Components;
 
+    using Microsoft.AspNetCore.Components.Authorization;
+
+    /// <summary>
+    /// The purpose of the <see cref="AuthenticationService"/> is to authenticate against
+    /// a E-TM-10-25 Annex C.2 data source
+    /// </summary>
     public class AuthenticationService : IAuthenticationService
     {
         /// <summary>
@@ -57,9 +63,21 @@ namespace CDP4WebApp.SessionManagement
             this.authenticationStateProvider = authenticationStateProvider;
         }
 
+        /// <summary>
+        /// Login (authenticate) with a username and password to an E-TM-10-25 data source
+        /// </summary>
+        /// <param name="userName">
+        /// The username to authenticate with
+        /// </param>
+        /// <param name="password">
+        ///The password to authenticate with
+        /// </param>
+        /// <returns>
+        /// The <see cref="Person"/> object that corresponds to the provided <paramref name="userName"/>
+        /// </returns>
         public async Task<Person> Login(string userName, string password)
         {
-            var uri = new Uri("http://localhost:5000");
+            var uri = new Uri("https://cdp4services-public.cdp4.org");
             var credentials = new CDP4Dal.DAL.Credentials(userName, password, uri);
             var dal = new CdpServicesDal();
 
@@ -75,6 +93,12 @@ namespace CDP4WebApp.SessionManagement
             return session.ActivePerson;
         }
 
+        /// <summary>
+        /// logout from an E-TM-10-25 data source
+        /// </summary>
+        /// <returns>
+        /// a <see cref="Task"/>
+        /// </returns>
         public async Task LogOut() 
         {
             if (this.sessionAnchor.Session != null)
