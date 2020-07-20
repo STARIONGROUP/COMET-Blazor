@@ -8,7 +8,6 @@ The CDP4 is the RHEA Group Concurrent Design Solution that allows a team of engi
 
 Blazor lets you build interactive web UIs using C# instead of JavaScript. Blazor apps are composed of reusable web UI components implemented using C#, HTML, and CSS. Both client and server code is written in C#, allowing you to share code and libraries. Blazor is a feature of ASP.NET, the popular web development framework that extends the .NET developer platform with tools and libraries for building web apps. Blazor can run your client-side C# code directly in the browser, using WebAssembly. Because it's real .NET running on WebAssembly, you can re-use existing libraries from the .NET ecosystem, including the [CDP4-SDK](https://github.com/RHEAGROUP/CDP4-SDK-Community-Edition/) and many other libraries that are published on [nuget](https://www.nuget.org/).
 
-
 ### ECSS-E-TM-10-25A
 
 THE CDP4-WA is 100% compliant to ECSS-E-TM-10-25A since it makes use of the CDP4-SDK. The CDP4-SDK-CE is an implementation of the [[CDP4 Data Model]] which extends the [[ECSS-E-TM-10-25A|http://ecss.nl/hbstms/ecss-e-tm-10-25a-engineering-design-model-data-exchange-cdf-20-october-2010/]], including [[Annex A|ECSS E TM 10 25A Annex A]] and [[Annex C]]. ECSS-E-TM-10-25A is a Technical Memorandum under the E-10 System engineering branch in the [[ECSS|http://ecss.nl/]] series of standards, handbooks and technical memoranda. ECSS-E-TM-10-25 facilitates and promotes common data definitions and exchange among organisations, which are interested to collaborate on concurrent design, sharing analysis and design outputs and related reviews. This comprises a system decomposition up to equipment level and related standard lists of parameters and disciplines. Further it provides the starting point of the space system life cycle defining the parameter sets required to cover all project phases, although the present Technical Memorandum only addresses Phases 0, A and B1.
@@ -31,6 +30,16 @@ The CDP4-WA Community Edition is provided to the community under the GNU Affero 
 
 * [[CLA]]
 * [How to contribute](https://github.com/RHEAGROUP/CDP4-SDK-Community-Edition/blob/master/.github/CONTRIBUTING.md)
+
+## Build and Deploy
+
+> The Docker command needs to be executed from the commandline in the **solution** folder.
+
+```
+$ ./solutionfolder# docker build -f CDP4WebApp\Dockerfile -t rheagroup/cdp4-webapp:latest -t rheagroup/cdp4-webapp:0.1.0 .
+$ ./solutionfolder# docker push rheagroup/cdp4-webapp:0.1.0
+$ ./solutionfolder# docker push rheagroup/cdp4-webapp:latest
+```
 
 ## Other Links
 
