@@ -1,5 +1,7 @@
 CDP4-Blazor, or CDP4-WA is an experimental CDP4 Web Application built using client side [Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/client)
 
+> THIS REPOSITORY IS ARCHIVED AND IS NO LONGER MAINTAINED. A NEW PROJECT WILL BE USED TO CONTINUE BLAZOR BASED WEB APPLICATION DEVELOPMENT
+
 ## What is the CDP4-WA Community Edition
 
 The CDP4 is the RHEA Group Concurrent Design Solution that allows a team of engineers to perform Concurrent Design. Concurrent Design is a methodology that is applied to the design of complex multidisciplinary systems. Concurrent Design is a design approach in which all design disciplines and stakeholders are brought together to create an integrated design in a collaborative way of working. The CDP4 is used to collaboratively create a design that is shared by means of a central repository that is the single-source-of-truth. T1he CDP4-WA Community Edition is a [Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/client) web application that is developed on top of the [CDP4-SDK](https://github.com/RHEAGROUP/CDP4-SDK-Community-Edition/) in a similar fashian that the [CDP4-WebServices-Community-Edition](https://github.com/RHEAGROUP/CDP4-WebServices-Community-Edition/) and the [CDP4-IME-Community-Edition](https://github.com/RHEAGROUP/CDP4-IME-Community-Edition) are built on the CDP4-SDK.
